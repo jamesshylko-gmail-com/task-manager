@@ -6,6 +6,9 @@ import com.example.taskmanager.mapper.UserMapper;
 import com.example.taskmanager.model.User;
 import com.example.taskmanager.security.JwtTokenProvider;
 import com.example.taskmanager.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,6 +30,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Tag(name = "Auth management", description = "APIs for managing login/register")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -34,6 +38,11 @@ public class AuthController {
     private final UserMapper userMapper;
     private final JwtTokenProvider jwtTokenProvider;
 
+    @Operation(
+        summary = "Register",
+        description = "Register user by username> email and password"
+    )
+    @ApiResponse(responseCode = "200", description = "Registration done")
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegistrationRequestDto dto) {
         User user = userService.save(dto);
@@ -43,6 +52,11 @@ public class AuthController {
         throw new IllegalStateException("Registration failed");
     }
 
+    @Operation(
+        summary = "Login",
+        description = "Login user by username/password"
+    )
+    @ApiResponse(responseCode = "200", description = "Login done")
     @PostMapping("/login")
     public ResponseEntity<?> authenticate(@RequestBody AuthenticationRequestDto request) {
         return login(request);
