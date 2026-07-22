@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+Test set: com.example.taskmanager.mapper.UserMapperTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 1.441 s <<< FAILURE! -- in com.example.taskmanager.mapper.UserMapperTest
+com.example.taskmanager.mapper.UserMapperTest.mapToAuthenticationRequestDto -- Time elapsed: 0.072 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: not equal but was: <password>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotEquals.failEqual(AssertNotEquals.java:277)
+	at org.junit.jupiter.api.AssertNotEquals.assertNotEquals(AssertNotEquals.java:263)
+	at org.junit.jupiter.api.AssertNotEquals.assertNotEquals(AssertNotEquals.java:258)
+	at org.junit.jupiter.api.Assertions.assertNotEquals(Assertions.java:2819)
+	at com.example.taskmanager.mapper.UserMapperTest.mapToAuthenticationRequestDto(UserMapperTest.java:70)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.example.taskmanager.mapper.UserMapperTest.mapToUser -- Time elapsed: 0.041 s <<< ERROR!
+org.mockito.exceptions.base.MockitoException: 
+
+No argument value was captured!
+You might have forgotten to use argument.capture() in verify()...
+...or you used capture() in stubbing but stubbed method was not called.
+Be aware that it is recommended to use capture() only with verify()
+
+Examples of correct argument capturing:
+    ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
+    verify(mock).doSomething(argument.capture());
+    assertEquals("John", argument.getValue().getName());
+
+	at com.example.taskmanager.mapper.UserMapperTest.mapToUser(UserMapperTest.java:42)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.mockito.exceptions.misusing.UnfinishedStubbingException: 
+Unfinished stubbing detected here:
+-> at com.example.taskmanager.mapper.UserMapperTest.mapToUser(UserMapperTest.java:41)
+
+E.g. thenReturn() may be missing.
+Examples of correct stubbing:
+    when(mock.isOk()).thenReturn(true);
+    when(mock.isOk()).thenThrow(exception);
+    doThrow(exception).when(mock).someVoidMethod();
+Hints:
+ 1. missing thenReturn()
+ 2. you are trying to stub a final method, which is not supported
+ 3. you are stubbing the behaviour of another mock inside before 'thenReturn' instruction is completed
+
+		at org.springframework.test.context.bean.override.mockito.MockitoResetTestExecutionListener.resetMocks(MockitoResetTestExecutionListener.java:124)
+		at org.springframework.test.context.bean.override.mockito.MockitoResetTestExecutionListener.resetMocks(MockitoResetTestExecutionListener.java:111)
+		at org.springframework.test.context.bean.override.mockito.MockitoResetTestExecutionListener.afterTestMethod(MockitoResetTestExecutionListener.java:104)
+		at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:488)
+		at org.springframework.test.context.junit.jupiter.SpringExtension.afterEach(SpringExtension.java:274)
+		... 2 more
+
